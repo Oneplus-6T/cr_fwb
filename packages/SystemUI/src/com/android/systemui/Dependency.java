@@ -47,7 +47,7 @@ import com.android.systemui.plugins.VolumeDialogController;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSImpl;
 import com.android.systemui.qs.tiles.dialog.bluetooth.BluetoothTileDialogViewModel;
-import com.android.systemui.qs.tiles.dialog.InternetDialogFactory;
+import com.android.systemui.qs.tiles.dialog.InternetDialogManager;
 import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.statusbar.CommandQueue;
@@ -151,7 +151,7 @@ public class Dependency {
     @Inject Lazy<ConfigurationController> mConfigurationController;
     @Inject Lazy<FlashlightController> mFlashlightController;
     @Inject Lazy<KeyguardStateController> mKeyguardStateController;
-    @Inject Lazy<InternetDialogFactory> mInternetDialogFactory;
+    @Inject Lazy<InternetDialogManager> mInternetDialogManager;
     @Inject Lazy<NetworkController> mNetworkController;
     @Inject Lazy<KeyguardUpdateMonitor> mKeyguardUpdateMonitor;
     @Inject Lazy<DeviceProvisionedController> mDeviceProvisionedController;
@@ -218,7 +218,7 @@ public class Dependency {
         mProviders.put(ConfigurationController.class, mConfigurationController::get);
         mProviders.put(FlashlightController.class, mFlashlightController::get);
         mProviders.put(KeyguardStateController.class, mKeyguardStateController::get);
-        mProviders.put(InternetDialogFactory.class, mInternetDialogFactory::get);
+        mProviders.put(InternetDialogManager.class, mInternetDialogManager::get);
         mProviders.put(NetworkController.class, mNetworkController::get);
         mProviders.put(KeyguardUpdateMonitor.class, mKeyguardUpdateMonitor::get);
         mProviders.put(DeviceProvisionedController.class, mDeviceProvisionedController::get);
