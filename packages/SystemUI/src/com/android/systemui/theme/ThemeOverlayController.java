@@ -476,10 +476,12 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
         final IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PROFILE_ADDED);
         filter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
-        mThemeController.observe("settings_theme_style", true /* system */, () -> reevaluateSystemTheme(true));
-        mThemeController.observe("lockscreen_widgets_enabled", true /* system */, () -> reevaluateSystemTheme(true));
-        mThemeController.observe("lockscreen_widgets", true /* system */, () -> reevaluateSystemTheme(true));
-        mThemeController.observe("lockscreen_widgets_extras", true /* system */, () -> reevaluateSystemTheme(true));
+        mThemeController.observeSystemSettings(() -> reevaluateSystemTheme(true),
+                "settings_theme_style",
+                "lockscreen_widgets_enabled",
+                "lockscreen_widgets",
+                "lockscreen_widgets_extras"
+        );
         mBroadcastDispatcher.registerReceiver(mBroadcastReceiver, filter, mMainExecutor,
                 UserHandle.ALL);
         mSecureSettings.registerContentObserverForUser(
